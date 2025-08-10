@@ -1,13 +1,13 @@
-drop table mferreira.orders;
-drop table mferreira.courses;
+drop table if exists orders;
+drop table if exists courses;
 
-create table mferreira.courses (
-    couse_id uuid,
+create table courses (
+    course_id uuid,
     title text,
     amount numeric
 );
 
-create table mferreira.orders (
+create table orders (
     order_id uuid,
     course_id uuid,
     name text,
@@ -16,7 +16,7 @@ create table mferreira.orders (
     amount numeric
 );
 
-insert into mferreira.courses values (
+insert into courses values (
     'db2775ec-5abd-4cc8-aed0-f6973547a91a',
     'Curso teste',
     1000
