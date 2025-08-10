@@ -1,4 +1,5 @@
 import Checkout from '../src/application/usecases/Checkout';
+import GetOrder from '../src/application/usecases/GetOrder';
 import CourseRepositoryDatabase from '../src/infra/database/repositories/CourseRepositoryDatabase';
 import OrderRepositoryDatabase from '../src/infra/database/repositories/OrderRepositoryDatabase';
 
@@ -14,7 +15,15 @@ test('should make a checkout', async () => {
     email     : 'test@test.com',
     cardToken : '123456789'
   };
-  const output = await checkout.execute(input);
-
-  expect(output.orderId).toBeDefined();
+  const checkoutOutput = await checkout.execute(input);
+  
+  const getOrder = new GetOrder(orderRepository);
+  const getOrderOutput = await getOrder.execute(checkoutOutput.orderId);
+  expect(checkoutOutput.orderId).toBeDefined();
+  expect(getOrderOutput.orderId).toBeDefined();
+  expect(getOrderOutput.orderId).toEqual(checkoutOutput.orderId);
+  expect(getOrderOutput.name).toBe(input.name);
+  expect(getOrderOutput.email).toBe(input.email);
+  expect(getOrderOutput.amount).toBe(1000);
+  expect(getOrderOutput.status).toBe('waiting_payment');
 }); 
