@@ -4,7 +4,7 @@ import pgp from 'pg-promise';
 
 export default class OrderRepositoryDatabase implements IOrderRepository {
   async save(order: Order): Promise<void> {
-    const connection = pgp()('postgres://user:password@localhost:5432/mferreira');
+    const connection = pgp()('postgres://root:password@localhost:5432/mferreira');
     await connection.query('insert into orders (order_id, course_id, name, email, amount, status) values ($1, $2, $3, $4, $5, $6)', [
       order.orderId,
       order.courseId,
@@ -18,7 +18,7 @@ export default class OrderRepositoryDatabase implements IOrderRepository {
   }
 
   async udpate(order: Order): Promise<void> {
-    const connection = pgp()('postgres://user:password@localhost:5432/mferreira');
+    const connection = pgp()('postgres://root:password@localhost:5432/mferreira');
     await connection.query('udpate orders set status = $1 where order_id = $2', [
       order.status,
       order.orderId
@@ -28,7 +28,7 @@ export default class OrderRepositoryDatabase implements IOrderRepository {
   }
 
   async getById(id: string): Promise<Order> {
-    const connection = pgp()('postgres://user:password@localhost:5432/mferreira');
+    const connection = pgp()('postgres://root:password@localhost:5432/mferreira');
     const [order] = await connection.query('select * from orders where order_id = $1', [
       id
     ]);
