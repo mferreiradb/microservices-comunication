@@ -4,8 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "dev": "nodemon --exec ts-node src/main.ts",
     "lint": "eslint src/** --no-error-on-unmatched-pattern",
-    "lintfix": "eslint src/** --fix"
+    "lintfix": "eslint src/** --fix",
+    "test": "npx jest"
   },
   "dependencies": {
     "@hapi/hapi": "^21.3.2",
