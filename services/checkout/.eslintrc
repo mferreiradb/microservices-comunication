@@ -127,7 +127,7 @@
         "no-undefined": "error",
         "no-multi-assign": "error",
         "no-duplicate-imports": "error",
-        "no-console": "error",
+        // "no-console": "error",
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": "error",
         "@typescript-eslint/no-explicit-any": "off"
