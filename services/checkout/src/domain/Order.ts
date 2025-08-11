@@ -8,7 +8,7 @@ export default class Order {
         readonly name: string,
         readonly email: string,
         readonly amount: number, 
-        readonly status: string
+        private status: string
   ) {}
 
   static create(courseId: string, name: string, email: string, amount: number): Order {
@@ -16,5 +16,14 @@ export default class Order {
     const status = 'waiting_payment';
 
     return new Order(orderId, courseId, name, email, amount, status ); 
+
+  }
+
+  confirm() {
+    this.status = 'confirmed';
+  }
+
+  getStatus() {
+    return this.status;
   }
 }

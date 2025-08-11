@@ -11,16 +11,16 @@ export default class OrderRepositoryDatabase implements IOrderRepository {
       order.name,
       order.email,
       order.amount,
-      order.status
+      order.getStatus()
     ]);
     
     await connection.$pool.end();
   }
 
-  async udpate(order: Order): Promise<void> {
+  async update(order: Order): Promise<void> {
     const connection = pgp()('postgres://root:password@localhost:5432/mferreira');
-    await connection.query('udpate orders set status = $1 where order_id = $2', [
-      order.status,
+    await connection.query('update orders set status = $1 where order_id = $2', [
+      order.getStatus(),
       order.orderId
     ]);
     
